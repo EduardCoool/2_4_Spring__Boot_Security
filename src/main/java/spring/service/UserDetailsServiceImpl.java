@@ -19,7 +19,6 @@ import java.util.Optional;
 public class UserDetailsServiceImpl implements UserDetailsService, UserService {
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
@@ -32,8 +31,6 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
-
-
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
@@ -55,7 +52,6 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
     @Override
     public boolean save(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
-
         if (userFromDB != null) {
             return false;
         }
@@ -67,7 +63,6 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
     @Override
     public boolean registrationUser(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
-
         if (userFromDB != null) {
             return false;
         }
